@@ -1,0 +1,34 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar-header">
+            <a href="https://www.zensar.com" class="navbar-brand"
+            style="margin: 10px;">
+                <img src="assets/images/zensar_logo.jpg" height="30px" />
+                Zensar
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul id="navbarNav" class="nav navbar-nav collapse navbar-collapse">
+            <li class="nav-item" *ngFor="let item of menuItems">
+                <!-- <a href="#" class="nav-link">{{item}}</a> -->
+                
+                <!-- below line makes call to server -->
+                <!-- <a href="{{item | lowercase}}" class="nav-link">{{item}}</a> -->
+                
+                <!-- client side routing -->
+                <a routerLink="{{item | lowercase}}" class="nav-link">{{item}}</a>
+            </li>
+        </ul>
+        <ul id="navbarNav" class="nav navbar-nav collapse navbar-collapse">
+            <li class="nav-item">
+                <a routerLink="/lazy" class="nav-link">Lazy One</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/lazy/two" class="nav-link">Lazy Two</a>
+            </li>
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,49 @@
+<div>
+    <app-welcome style="float: right;"></app-welcome>
+    <div class="container">
+        <!-- Enter Search <input type="text" (blur)="doSearch($event);" /> -->
+    
+        <!-- # - Using Template Reference Variable -->
+        Enter Search <input type="text" id="input1" #search (blur)="doSearch(search.value);" />
+        <!-- <h4>{{search.id}}</h4> -->
+        <h1>Product List</h1>
+        <div style="float: left; width: 817px;">
+            <table border="3px solid black" align="center" class="table">
+                <thead style="text-align: center;">
+                    <!-- <th>Id</th> -->
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Product Image</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </thead>
+                <!-- <tr>
+                </tr> -->
+                <tbody style="text-align: center;">
+                    <tr *ngFor="let product of products">
+                        <!-- <td>{{product.id}}</td>
+                        <td>{{product.name}}</td> -->
+                        <!-- server side -->
+                        <!-- <td><a [href]="[product.id]">{{product.name}}</a></td> -->
+                        <!-- client side -->
+                        <td><a [routerLink]="[product.id]">{{product.name}}</a></td>
+                        <td>Rs. {{product.price}} /-</td>
+                        <!-- String Interpolation -->
+                        <!-- <td><img src={{product.imgPath}} alt={{product.name}} /></td> -->
+                        <!-- Property Binding -->
+                        <td><img [src]="product.imgPath" [alt]="product.name" /></td>
+                        <td>{{product.category}}</td>
+                        <td><button [disabled]="!isAdmin" class="btn btn-warning">Edit</button>
+                            <!-- Event Binding () -->
+                            <button *ngIf="isAdmin" class="btn btn-danger" (click)="showDetails(product);">Details</button>
+                            <addtocart [selectedProduct]="product"></addtocart>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="float: right; margin-top: 30px;">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<form class="form-horizontal" [formGroup]="regForm" (submit)="logForm();">
+    <fieldset class="form-group border p-3">
+        <legend class="text-center">
+            <h3>Reactive Forms</h3>
+        </legend>
+
+        <div class="form-group mb-2">
+            <label for="firstname" class="mb-1">
+                <h6 class="mb-0 text-sm">Firstname</h6>
+            </label>
+            <input type="text" class="form-control" formControlName="firstname" id="firstname"
+            [ngClass]="{'is-invalid':frm['firstname'].touched && frm['firstname'].invalid}" />
+            <div *ngIf="frm['firstname'].touched && frm['firstname'].invalid" class="invalid-feedback">
+                <p>Firstname is required!</p>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="lastname" class="mb-1">
+                <h6 class="mb-0 text-sm">Lastname</h6>
+            </label>
+            <input type="text" class="form-control" formControlName="lastname" id="lastname"
+            [ngClass]="{'is-invalid':frm['lastname'].touched && frm['lastname'].invalid}" />
+            <div *ngIf="frm['lastname'].touched && frm['lastname'].invalid" class="invalid-feedback">
+                <p *ngIf="frm['lastname'].errors!['required']">Lastname is mandatory!</p>
+                <p *ngIf="frm['lastname'].errors!['minlength']">Lastname atleast 2 characters!</p>
+                <p *ngIf="frm['lastname'].errors!['maxlength']">Lastname at the max 6 characters!</p>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="gender" class="mb-1">
+                <h6 class="mb-0 text-sm">Gender</h6>
+            </label>
+            <div [ngClass]="{'is-invalid':frm['gender'].touched && frm['gender'].invalid}">
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" formControlName="gender"
+                    id="male" value="male"
+                    [ngClass]="{'is-invalid':frm['gender'].touched && frm['gender'].invalid}" />
+                    <label class="form-check-label" for="male">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" formControlName="gender"
+                    id="female" value="female"
+                    [ngClass]="{'is-invalid':frm['gender'].touched && frm['gender'].invalid}" />
+                    <label class="form-check-label" for="female">
+                        Female
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="frm['gender'].touched && frm['gender'].invalid" class="invalid-feedback">
+                <p>Gender is required!</p>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="age" class="mb-1">
+                <h6 class="mb-0 text-sm">Age</h6>
+            </label>
+            <input type="number" class="form-control" formControlName="age" id="age"
+            [ngClass]="{'is-invalid':frm['age'].touched && frm['age'].invalid}" />
+            <div *ngIf="frm['age'].touched && frm['age'].invalid" class="invalid-feedback">
+                <p *ngIf="frm['age'].errors!['required']">Age is required!</p>
+                <!-- <p *ngIf="frm['age'].errors!['ageRange']">Age should be between 20 and 60!</p> -->
+                <p *ngIf="frm['age'].errors!['ageRange']">Age should be between {{minAge}} and {{maxAge}}!</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <div class="d-grid gap-2 mx-auto mt-3">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="reset" class="btn btn-secondary" (click)="reset();">Reset</button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
