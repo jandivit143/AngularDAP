@@ -1,0 +1,333 @@
+Day 1 (24th July 2023)
+(Google)
+Angular - Client Side javascript ui framework (opinionated)
+                TypeScript (Microsoft)
+
+AngularJS 1.x version angular.js superheroic client side MV* or MVW Framework
+include .js
+
+Angular 2.0 - Angular - Component Based
+
+MVW - MVC arch + support for Commands and Data Binding
+
+MV* or MVW - Whatever
+
+Model - Data Entity
+View - Represent that data , Tabular format, Bar chart, Pie diagram etc.
+C - Controller - Client Server arch - Controller is the first class citizen.
+                Controller is responsible for processing the request.
+                Pushing the model's data to the view.
+                Handling events associated with (controls) which are there on the View.
+                MVC - View is as dumb as possible
+
+P - Presenter - Presenter deals with model and do other processing
+
+        MVPM - Presenter Model - PM works same like Controller
+
+VM - ViewModel MS has adopted MVPM and come up with MVVM
+        Prism, WPF, Silverlight - MVVM
+        Support for Data Binding and Commands
+
+
+        Component - has its own MVC arch
+        Angular Component based arch
+
+        ReactJS - library, Angular - Framework
+
+
+        our program makes use of library
+        whereas framework makes use of our code
+
+
+        Why do you need Client side javascript framework?
+        
+        Angular, Ember
+        pretty easy to create Single Page Application
+
+
+        need to treat .js file as a module
+
+        module - is a reusable piece of code that encapsulates implementation details and exposes a public API.
+
+        Module Formats
+        Syntax by which we can define a module / export a module
+                        and we can import a module
+
+        AMD - Asynchronous Module Definition
+                export - define
+                import - module loader - RequireJS
+        
+        CommonJS
+                export - module.exports
+                import - require function of CommonJS
+        
+        UMD - Universal Module Definition
+                AMD, CommonJS
+        
+        System.register - module loader - SystemJS
+                        You need to tell where the module is
+        
+        ES2015 module format
+                ES 2015 keywords
+                import - import
+                export - export
+
+        
+        Module loader interprets and loads a module at run time.
+
+        tsc - typeScript compiler - .ts to .js (bundle file)
+        es2015 + jsx - babel       .jsx to .js
+
+        build-time - bundle file
+
+        Module bundler - Browserify
+                         Webpack - Webpack treats everything as a module.
+        Your css, html, js, fonts, images - module and for every module you need to have a module loader
+
+        .css - style-loader/ css-loader
+        .html - html loader
+
+
+        to install angular cli globally - npm i -g @angular/cli
+
+        to list globally installed packages - npm ls -g
+
+        to uninstall angular cli globally - npm uninstall -g @angular/cli
+
+        to install a specific version of angular cli globally - npm i -g @angular/cli@wished.version.here
+
+        npm start
+        npm test
+        npm run key_value (build)
+
+        created one angular application naming "shopping_cart_app"
+
+        created components and learned about interpolation, property binding, canonical form binding
+
+        explored on hierarchy of components with an example in "AppIIComponent" component along with changes in "index.html" file
+
+Day 2 (26th July 2023)
+Directives in angular - we have 3 types of Directives(Component, Structural Directive, Attribute Directive)
+
+Structural Directives (*ngIf, *ngFor, ngSwitch)
+
+Made use of bootstrap framework for styling lists and texts in 'StructuralDirective.ts' file
+
+To install bootstrap, use the cmd 'npm i bootstrap' and add the path in 'angular.json' file under styles array and scripts array
+"styles": ["node_modules/bootstrap/dist/css/bootstrap.css"]
+"scripts": ["node_modules/bootstrap/dist/js/bootstrap.js"]
+
+Created a menu component and created a navigation bar in it
+
+Created a folder naming 'components' and moved all the components into it
+
+Created a menu service inside the folder 'services'
+
+We have seen scenarios of providing services like component wise, module wise and service wise
+
+                                                AppModule
+                                                providers:[MenuService]
+
+                        AppComponent - Parent of MenuA and MenuB                        AppIIComponent (Second Bootstrap)
+                        providers:[MenuService]
+
+                        MenuService
+MenuAComponent                          MenuBComponent
+//providers:[MenuService]               //providers:[MenuService]
+
+Created a Product Model in product.ts file
+
+Added some products in ProductsComponent and displayed them
+
+Day 3 (28th July 2023)
+Moved all the products details to ProductsService and fetching them in ProductsComponent
+
+Event Binding
+
+Made use of #(Template Reference Variable) for getting the value of input element
+
+Also made use of #(Template Reference Variable) for component(<app-greet></app-greet>)
+
+Explored on Attribute Directives in 'demo_attribute.component.ts' file
+
+Run the cmd 'npm run build' to generate 'dist' folder for the production
+
+Generating Build Version of the app(Production build)
+Install dev-server with the cmd 'npm i -g dev-server' - to host production app
+
+Go to 'shopping_cart_app' location which is inside the 'dist' folder and open cmd and run the cmd 'dev-server'
+and then open the broswer with the mentioned listening port(which is a production build)
+
+Added a new button 'Add To Cart' which is a component(AddToCartComponent) in 'ProductsComponent' and made use of
+@Input() decorator for parent to child communication
+
+Day 4 (31st July 2023)
+View Encapsulation in 
+We have three modes of view encapsulation:
+-> ViewEncapsulation.ShadowDom
+-> ViewEncapsulation.Emulated
+-> ViewEncapsulation.None
+Explored on ViewEncapsulation in 'viewencapsulations' folder
+
+Any To Any components communication
+
+Single Instance - Singleton Service between these two components
+Observable
+
+Products                CartDetails
+
+AddToCart
+
+        CartService
+        AddToCart component will add product to the CartService
+        CartDetails component will get all products from the CartService
+
+Created one button to get the cart products which were added(commented it)
+
+To get the product details instantly after clicking on 'Add To Cart' button, we make use of observables(see in file 'cart.service.ts' and 'cartdetails.component.ts')
+Observables used for two different reasons
+-> To make use of asynchronous calls or for RESTFul call
+-> And the other is transmitting the data between the components
+
+On page refresh, we won't get the products details which were added in cart, so we make use of 'angular-web-storage'
+Install it with the cmd 'npm i angular-web-storage'
+After installing, added the module(AngularWebStorageModule) in app.module.ts file and used the decorator @SessionStorage() in cart.service.ts file
+Then check by adding the products to cart and refresh the page
+
+Assignment
+-> CartDetails
+        Action - Remove
+   First do it with normal button (later if possible go for another child component)
+
+Created a login component in 'login' folder and made use of Two Way Data Binding
+
+Assignment 2
+Login Component
+        Login Service (Singleton)
+        Observable - Push notification
+Welcome Component
+        Welcome <username>
+
+Day 5 (2nd August 2023)
+Added one action button 'Remove' in cartdetails component to remove the products from the cart
+
+Created welcome component in 'welcome' folder
+
+Implemented to display 'Welcome <username>' with welcome message once the user logged in from logincomponent
+using observables
+
+Implemented Child to Parent Communication using EventEmitter in profile.component.ts file with app.component.ts file
+
+Created custom module naming 'shared.module.ts' inside the folder 'modules' and created one component naming 'sharedcomp.component.ts'
+Inside the 'shared.module.ts' file, add the exports array with the components and add the 'shared.module.ts' in imports array of 'app.module.ts' file
+
+Created a Single Page Application(SPA) using Router in 'app-routing.module.ts' file by assigning paths and components and changed the anchor link to 'routerLink'
+
+Implemented on login, user should go to products page directly using router in 'login.component.ts' file
+
+And also implemented on specifying the wrong url by the user, user should be notified with 'Page Not Found' image from 'pagenotfound.component.ts' file
+
+Implemented nested routing in 'products.component.html' file and 'productdetails.component.ts' file(Dealed with params)
+
+Day 6 (4th August 2023)
+Explored on Lazy loading and RouterModule.forChild()
+Created a module naming 'lazy' and made an SPA with routing options 'Lazy One' and 'Lazy Two' as well as components
+Preloading Strategies
+        NoPreloading(default)
+        PreloadAllModules
+        Custom
+
+HTTP client which is angular built-in service
+Why should we go for observable over promise?
+Observable can emit the multiple values but promise can emit only one value. Observables are lazy. When we subscribe then only that
+will execute, but promises will execute immediately on creation. We can make observable synchronous or asynchronous. Promises are
+always asynchronous. When we subscribe to the observable, we can unsubscribe also but thats not the case with promise.
+
+Created a RESTFul Service using HTTP client by creating a service naming 'users.service.ts' and component in 'users' folder
+Note: HttpClient returns the observable
+We have to add 'HttpClientModule' in 'imports' array in 'app.module.ts' file to know to our angular application that we are making use
+of 'HttpClient' in 'users.service.ts' file
+
+HTML5 Forms
+Template Driven Form
+Reactivce Form
+
+Created a new component naming 'signupform', we may face problem or error like 'More than one module matches. Use the "--skip-import"
+option to skip importing the component into the closest module or use the module option to specify a module.' then we should use the
+cmd while creating the component 'ng g c signupform -m app' where '-m' specifies the module and 'app' is the module.
+
+Implemented Template Driven Form in 'signupform' component and made some validations in form
+Note: Template Driven Form is asynchronous due to use of directives
+Took screenshot about the pros and cons of Template Driven Form
+
+Day 7 (7th August 2023)
+I added the code for updating the user details in 'users.service.ts' file and 'users.component.ts' file
+
+Reactive Form
+Pros
+Business Logic(validations) and control declaration are isolidate from the view template. View is solely
+responsible for the look and feel of the form. This increases scalability, readability and maintainability.
+
+A validation logic gets declared in the component class, unit tests are easily written for the logic to ensure
+the code is bug-free.
+
+Reactive form takes away the complexity of writing custom validators. They allow you to define custom validator
+functions and bind them to the form during declaration.
+
+Due to its synchronous nature, developers can access and update any form control readily available in the code.
+
+Cons
+Reactivce forms are complex to use for first time developers. Reactivce forms module requires an in-depth
+understanding of the API, create a high learning curve.
+
+There is no way to disable inputs using the disabled attribute of an html control unless we manually disable it
+using FormControl programmatically.
+
+Created a Reactivce Form in 'reactiveform' component with the custom validation for age field in 'utilities' folder
+
+Pipes
+Explored on built-in pipes in 'demopipes' component and also created two custom pipes naming 'caption' and 'filter'
+by using the cmd 'npm g p caption' and 'npm g p filter'
+
+Explored on ViewChild and ViewChildren in 'demo_viewchild_viewchildren' folder
+Also made use of child component for communication using ViewChild in files 'demoviewchild.component.ts' and 'counter.component.ts'
+
+Day 8 (9th August 2023)
+Commented all the console.log()'s in each and every module
+
+Component LifeCycle Hooks
+1. constructor
+2. ngOnChanges - It is something which is being invoked everytime when there is a change in one of the input properties of the component
+3. ngOnInit
+4. ngDoCheck
+5. ngAfterContentInit
+6. ngAfterContentChecked
+7. ngAfterViewInit
+8. ngAfterViewChecked
+9. ngOnDestroy
+
+Why do we bother about or why do we need LifeCycle Hooks/Methods?
+To utilize the resources in more optimized way
+
+Created two hooks component in 'lifecycle-hooks' folder and explored all the lifecycle hooks/methods
+
+Auth Guard
+Guards
+Route Guards are interfaces which tell the router whether or not it should allow navigation to a requested route.
+
+Guard function returns boolean or Observable<boolean> or Promise<boolean> which resolve to a boolean at some
+point of time in the future
+If it is true it is accessible else not
+
+Types of Guards
+CanActivate: checks to see if a user can visit a route
+CanActivateChild: checks to see if a user can visit a routes children
+CanDeactivate: checks to see if a user can exit a route
+Resolve: performs route data retrieval before route activation
+CanLoad: checks to see if a user can route to a module that lazy loaded
+
+Created a guard with the cmd 'ng g g auth' in 'guards' folder and chose 'CanActivate' as guard type for parent routing
+Created a service with the cmd 'ng g s auth' in 'services' folder
+
+Also Created a guard with the cmd 'ng g g admin' in 'guards' folder and chose 'CanActivateChild' as guard type for child routing
+Created a service with the cmd 'ng g s admin' in 'services' folder
